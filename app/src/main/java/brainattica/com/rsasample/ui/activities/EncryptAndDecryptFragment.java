@@ -16,6 +16,7 @@ import java.util.List;
 import brainattica.com.rsasample.R;
 import brainattica.com.rsasample.crypto.RSA;
 import brainattica.com.rsasample.utils.Preferences;
+import timber.log.Timber;
 
 /**
  * Created by javiermanzanomorilla on 12/05/15.
@@ -50,7 +51,30 @@ public class EncryptAndDecryptFragment extends Fragment implements PagerSlide {
                 }
                 String message = textToBeEncrypted.getText().toString();
                 String encryptedMessage = RSA.encryptWithStoredKey(message);
+                encryptedMessage = "Jk+bjPWro68vN/cK1bt9toEqMdVv46Ubm/kcspNWK8HxSjCea0MUnHeOpA6c8MqfKfPoo3DBfowe\n" +
+                        "                                           6oaOwtuofkbx4G6emUNlkDXp4vFTW0b19an4oGHCc0lJvN7Jz4QtM3m+sWBd05tJTN6vu9uWUcXS\n" +
+                        "                                           0jSFd54RsyFZfFI1wOA=";
+//                String decryptedMessage = RSA.decryptWithStoredKey(encryptedMessage);
+                String key = "-----BEGIN PRIVATE KEY-----\n" +
+                        "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALXZLm7RmoQ+2dDw\n" +
+                        "RYpfIAkOEWMOp08brGdaRGh8knrNOgVu2hP6qGKTzuxbpzCaIM5HGZYI//6PQt5X\n" +
+                        "GVTDNS7FqyvDsPqH/arxkVawSY2aiEFEa+SMvwOQaUP5mPbo4xJ+Lz/952KRIWaf\n" +
+                        "+vMgnywnmcf43brcNEjITcrOoXnHAgMBAAECgYAl6UxL4DjlfzDr5VuqGGDWYm9v\n" +
+                        "hluNG4ja1y/R1L65CVYiUdT3O1eljYkjL4xwjoFuX9ZOuDued4GKVwA58qSAbK0w\n" +
+                        "uAQ/9zIY9AaYyeJa8XGgVczCRCkd5sTyZer2nsRu+3vOA2IWJ7C6d/Cwnu3zitu4\n" +
+                        "pdmsfVUbWdpUGCKOuQJBAOQKRj1+5BIST8PhH8f07RpdtsZOT801B7XhsaT0df3P\n" +
+                        "yZs5KzrjkUn5U0RUpKBfd64y+WHZXDS+FUTi9BGAzBUCQQDMJQoTYKYbWEUffowA\n" +
+                        "Ms91a1sBeh7bsXE0NNiFXryUwRKWzOg9YfWho29vwE1/DsZHFqkWRVxxbrsv0e3o\n" +
+                        "TblrAkB3ZdHFHQ05UREmlFbZkSob5flu903dOejhmFw07DJjREpg1ZwG52QJAVxR\n" +
+                        "qKfRuGqncNUWIIKgsu3b9aCpEXDJAkEAo00pzzBsD8m/mZ74TRxYGhyjsv3Ge4Vp\n" +
+                        "AhMX9TBAeFouDZWiXZ/kBsYfWWyiUXY3JBy7a8ZWWaLzeCBdSIwMOwJBALxiSLy1\n" +
+                        "TpCXuF/2rnx0sgSZE/EPyblwaVbGjF3CpsMAMfSOVjW5cyJdz8Z+XffbGDlGdZFS\n" +
+                        "FwFM9ME1QMZKUTQ=\n" +
+                        "-----END PRIVATE KEY-----";
+                Preferences.putString(Preferences.RSA_PRIVATE_KEY, key);
                 String decryptedMessage = RSA.decryptWithStoredKey(encryptedMessage);
+                Timber.d("Encrypted Text: %s", encryptedMessage);
+                Timber.d("Decrypted Text: %s", decryptedMessage);
                 encryptedText.setText("Encrypted Text: " + encryptedMessage);
                 decryptedText.setText("Decrypted Text: " + decryptedMessage);
 

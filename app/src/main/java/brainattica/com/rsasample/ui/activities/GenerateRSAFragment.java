@@ -17,6 +17,7 @@ import brainattica.com.rsasample.R;
 import brainattica.com.rsasample.crypto.Crypto;
 import brainattica.com.rsasample.crypto.RSA;
 import brainattica.com.rsasample.utils.Preferences;
+import timber.log.Timber;
 
 /**
  * Created by javiermanzanomorilla on 12/05/15.
@@ -86,6 +87,8 @@ public class GenerateRSAFragment extends Fragment implements PagerSlide {
         completedContainer.setVisibility(View.VISIBLE);
         publicKey.setVisibility(View.VISIBLE);
         privateKey.setVisibility(View.VISIBLE);
+        Timber.d("Private key: %s",Preferences.getString(Preferences.RSA_PRIVATE_KEY));
+        Timber.d("Public key: %s",Preferences.getString(Preferences.RSA_PUBLIC_KEY));
         privateKey.setText(Crypto.stripPrivateKeyHeaders(Preferences.getString(Preferences.RSA_PRIVATE_KEY)));
         publicKey.setText(Crypto.stripPublicKeyHeaders(Preferences.getString(Preferences.RSA_PUBLIC_KEY)));
     }
